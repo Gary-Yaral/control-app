@@ -1,0 +1,126 @@
+:root {
+  --border-color: rgb(243, 243, 243);
+  --box-shadow: rgb(221, 221, 221);
+  --boton-black-bg: rgb(17, 16, 16);
+  --boton-black-color: rgb(255, 255, 255);
+}
+
+.signup-container {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background: rgba(240,240,240, 0.8);
+}
+
+.signup-block {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  width: 80%;
+  height: fit-content;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 5px 3px var(--box-shadow);
+}
+
+.signup-banner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: linear-gradient(45deg, rgb(78, 219, 172), rgb(45, 133, 184));
+  color: #fff;
+  
+  box-sizing: border-box;
+  justify-content: center;
+  align-items:center
+}
+
+.signup-banner h1{
+  margin-bottom: 0;
+}
+
+.signup-banner p{
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.signup-form {
+  background: #fff;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.signup-form input {
+  width:100%;
+  box-sizing: border-box;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.signup-form input:not([type="submit"]) {
+  padding: 0 10px;
+  outline: none;
+  border: 1px solid gray
+}
+
+.signup-form input[type="submit"] {
+  background: var(--boton-black-bg);
+  color: var(--boton-black-color);
+  border: none;
+  cursor: pointer;
+}
+
+.footer {
+  width: 100%;
+  height: 6rem;
+  display:flex; 
+  justify-content: center;
+  align-items: center;
+  color: rgb(190, 190, 190);
+  font-size: 14px;
+}
+
+.error-message {
+  font-size: 11px;
+  color: rgb(233, 52, 52);
+}
+
+@media screen and (max-width: 600px) {
+  .signup-block {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 70%;
+    height: fit-content;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px 3px var(--box-shadow);
+  }
+
+  .signup-form {
+    background: #fff;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .signup-block {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 95%;
+    height: fit-content;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px 3px var(--box-shadow);
+  }
+}
