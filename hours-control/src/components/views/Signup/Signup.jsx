@@ -1,19 +1,23 @@
 import { useState, useEffect, useCallback } from 'react'
 import validateForm from '../../validateForm'
+import SignupModal from '../SignupModal/SignupModal'
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import './Signup.css';
 
 function Signup() {
+  const [modal, setModal] = useState(false)
+  const [data, setData] = useState({});
+  const [status, setStatus] = useState({});
 
   return (
     <div className="signup-container">
       <section className='signup-block'>
         <div className="signup-banner">
           <h1>
-            Sign Up
+            Regístrate
           </h1>
           <p>
-            Create your account below
+            Completa el formulario
           </p>
         </div>
         <Formik initialValues= {
@@ -31,40 +35,17 @@ function Signup() {
         }}
 
         onSubmit = {(values) => {
-          console.log('send');
-          let formData = new FormData();
-          let { 
-            user_name, 
-            user_lastname, 
-            user_email,
-            user_password,
-            confirm_password 
-          } = values;
-
-          formData.append('user_name', user_name);
-          formData.append('user_lastname', user_lastname);
-          formData.append('user_email', user_email);
-          formData.append('user_password', user_password);
-          formData.append('confirm_password', confirm_password);
-          
-          fetch('http://localhost:4000/save-user', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Content-Type':'application/json'
-            }
-          }).then(res => res.json())
-          .then(res => console.log(res))
-
+            setModal(true);
+            setData({...data, ...values});
         }}>
           {
-            ({values, touched, errors, handleSubmit, handleChange}) => (
+            ({values, errors}) => (
               <Form className='signup-form'>
                 <div>
                   <Field
                     type="text" 
                     name="user_name" 
-                    placeholder='Name' />
+                    placeholder='Nombre' />
                   <ErrorMessage name="user_name" component= {() => (
                     <label className='error-message'>{errors.user_name}</label>
                   )} />
@@ -73,7 +54,7 @@ function Signup() {
                   <Field 
                     type="text" 
                     name="user_lastname" 
-                    placeholder='Lastname'/> 
+                    placeholder='Apellido'/> 
                   <ErrorMessage name="user_lastname" component= {() => (
                     <label className='error-message'>{errors.user_lastname}</label>
                   )} />
@@ -92,7 +73,7 @@ function Signup() {
                   <Field 
                     type="password" 
                     name="user_password" 
-                    placeholder='Password'
+                    placeholder='Contraseña'
                     value = {values.user_password}/>
                   <ErrorMessage name="user_password" component= {() => (
                     <label className='error-message'>{errors.user_password}</label>
@@ -102,7 +83,7 @@ function Signup() {
                   <Field 
                     type="password" 
                     name="confirm_password" 
-                    placeholder='Confirm password' 
+                    placeholder='Repetir contraseña' 
                     value= {values.confirm_password} />
                   <ErrorMessage name="confirm_password" component= {() => (
                     <label className='error-message'>{errors.confirm_password}</label>
@@ -114,6 +95,7 @@ function Signup() {
           } 
         </Formik>
       </section>
+      <SignupModal modal = {modal} setModal = {setModal} data = {data} setState = {setStatus}/>
     </div>
 
   )
